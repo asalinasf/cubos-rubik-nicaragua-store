@@ -1,103 +1,135 @@
+'use client'
+
+import { motion } from "framer-motion";
 import Image from "next/image";
+import { useState, useEffect } from "react";
+import Head from "next/head";
+import Link from "next/link";
+
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+
+        <div className="min-h-screen bg-white flex flex-col font-sans">
+      {/* Header */}
+      <header className={`bg-white ${isScrolled ? 'shadow-md' : ''} sticky top-0 z-50 transition-shadow duration-300`}>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
+          <div className="flex items-center space-x-2 sm:space-x-3">
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+              src="/images/logo.png"
+              alt="Logo"
+              width={100}
+              height={100}
+              className="w-12 h-12 sm:w-16 sm:h-16"
+              priority
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            <h1 className="text-xl sm:text-2xl font-extrabold text-[#0066b3] uppercase tracking-wide">
+              Cubos Rubik{" "}
+              <span className="block text-xs sm:text-sm tracking-widest">Nicaragua</span>
+            </h1>
+          </div>
+          
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex space-x-4 lg:space-x-6 text-sm font-semibold text-gray-700 uppercase">
+            <Link href="/catalogo" className="hover:text-[#0066b3] transition px-2 py-1">
+              Catálogo
+            </Link>
+            <Link href="#envios" className="hover:text-[#0066b3] transition px-2 py-1">
+              Envíos
+            </Link>
+            <Link href="#tutoriales" className="hover:text-[#0066b3] transition px-2 py-1">
+              Tutoriales
+            </Link>
+          </nav>
+          
+          {/* Mobile Menu Button */}
+          <button 
+            className="md:hidden text-gray-700 focus:outline-none"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            Read our docs
-          </a>
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {isMenuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
         </div>
+        
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="md:hidden bg-white py-2 px-4 shadow-lg"
+          >
+            <nav className="flex flex-col space-y-3 text-sm font-semibold text-gray-700 uppercase">
+              <a 
+                href="#catalogo" 
+                className="hover:text-[#0066b3] transition py-2 border-b border-gray-100"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Catálogo
+              </a>
+              <a 
+                href="#envios" 
+                className="hover:text-[#0066b3] transition py-2 border-b border-gray-100"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Envíos
+              </a>
+              <a 
+                href="#tutoriales" 
+                className="hover:text-[#0066b3] transition py-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Tutoriales
+              </a>
+            </nav>
+          </motion.div>
+        )}
+      </header>
+
+      {/* Hero */}
+      <main className="flex-grow bg-[#f7f9fc]">
+        <section className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20 text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0066b3] mb-4 sm:mb-6 leading-tight">
+            ¡Los mejores cubos Rubik en Nicaragua!
+          </h2>
+          <p className="text-gray-700 text-base sm:text-lg mb-8 sm:mb-10 max-w-2xl mx-auto px-2">
+            Tienda especializada en cubos, con envíos rápidos, asesoría y
+            tutoriales para que te conviertas en un pro.
+          </p>
+          <motion.a
+            href="#catalogo"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-block bg-[#0066b3] text-white px-6 py-2 sm:px-8 sm:py-3 rounded-full font-bold tracking-wide shadow-md hover:bg-blue-800 transition"
+          >
+            Ver Catálogo
+          </motion.a>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      {/* Footer */}
+      <footer className="bg-white border-t border-gray-200 text-center py-4 text-xs sm:text-sm text-gray-500">
+        © {new Date().getFullYear()} Cubos Rubik Nicaragua
       </footer>
     </div>
+    
+
   );
 }
