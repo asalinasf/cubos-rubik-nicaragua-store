@@ -18,7 +18,6 @@ const Footer = () => {
           <h4 className="font-semibold text-[#0066b3] mb-2">Enlaces</h4>
           <ul className="space-y-1">
             <li><Link href="/catalogo" className="hover:text-[#0066b3] transition">Catálogo</Link></li>
-            <li><Link href="/socail" className="hover:text-[#0066b3] transition">Tutoriales</Link></li>
             <li><Link href="/contacto" className="hover:text-[#0066b3] transition">Contacto</Link></li>
           </ul>
         </div>

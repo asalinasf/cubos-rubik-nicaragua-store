@@ -9,7 +9,6 @@ import Header from "@/components/Header";
 const ContactLandingPage = () => {
   return (
     <>
-      <Header />
         <main className="relative flex-grow bg-gradient-to-br from-[#f0f4ff] to-[#eaf3ff] overflow-hidden px-4 sm:px-6 py-24 sm:py-32">
       {/* Fondos decorativos */}
 
@@ -34,6 +33,8 @@ const ContactLandingPage = () => {
         </motion.p>
 
         {/* Redes */}
+
+        
         <div className="flex flex-wrap justify-center gap-6 sm:gap-10 mb-20">
           <motion.a
             href="https://wa.link/30ga1t"
@@ -105,7 +106,6 @@ const ContactLandingPage = () => {
         
       </div>
     </main>
-    <Footer />
     </>
 
   );

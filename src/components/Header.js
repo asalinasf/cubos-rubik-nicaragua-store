@@ -12,7 +12,7 @@ import { motion } from "framer-motion";
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      setIsScrolled (window.scrollY > 10);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -56,12 +56,7 @@ import { motion } from "framer-motion";
                 >
                   Catálogo
                 </Link>
-                <Link
-                  href="/social"
-                  className="hover:text-[#0066b3] transition px-2 py-1"
-                >
-                  Social
-                </Link>
+
                 <Link
                   href="/contacto"
                   className="hover:text-[#0066b3] transition px-2 py-1"
@@ -109,27 +104,21 @@ import { motion } from "framer-motion";
                 className="md:hidden bg-white py-2 px-4 shadow-lg"
               >
                 <nav className="flex flex-col space-y-3 text-sm font-semibold text-gray-700 uppercase">
-                  <a
-                    href="#catalogo"
+                  <Link
+                    href="/catalogo"
                     className="hover:text-[#0066b3] transition py-2 border-b border-gray-100"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Catálogo
-                  </a>
-                  <a
-                    href="#envios"
-                    className="hover:text-[#0066b3] transition py-2 border-b border-gray-100"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Envíos
-                  </a>
-                  <a
-                    href="#tutoriales"
+                  </Link>
+
+                  <Link
+                    href="/contacto"
                     className="hover:text-[#0066b3] transition py-2"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    Tutoriales
-                  </a>
+                    Contacto
+                  </Link>
                 </nav>
               </motion.div>
             )}

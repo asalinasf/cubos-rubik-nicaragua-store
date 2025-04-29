@@ -2,7 +2,7 @@
 
 import Header from "@/components/Header";
 import LandingPage from "@/components/LandingPage";
-
+import Footer from "@/components/Footer";
 
 export default function Home() {
 
@@ -12,14 +12,10 @@ export default function Home() {
     
 
       <div className="min-h-screen bg-white flex flex-col font-sans">
-        <Header />
 
         {/* Hero */}
         <LandingPage />
         {/* Footer */}
-        <footer className="bg-white border-t border-gray-200 text-center py-4 text-xs sm:text-sm text-gray-500">
-          © {new Date().getFullYear()} Cubos Rubik Nicaragua
-        </footer>
       </div>
     
   );
