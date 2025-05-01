@@ -25,7 +25,7 @@ export default function ProductoPage({ params }) {
       <div className="mb-6">
         <Link
           href="/catalogo"
-          className="inline-block bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition"
+          className="inline-block bg-[#0066b3] text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-8  00 transition"
         >
           ← Volver al catálogo
         </Link>
@@ -43,17 +43,26 @@ export default function ProductoPage({ params }) {
         </div>
 
         <div className="w-full md:w-1/2 space-y-4">
-          <h1 className="text-3xl font-bold text-gray-800">{producto.nombre}</h1>
+          <h1 className="text-3xl font-bold text-gray-800">
+            {producto.nombre}
+          </h1>
           <p className="text-gray-600">{producto.descripcion}</p>
-          <p className="text-xl font-semibold text-blue-600">
+          <p className="text-xl font-semibold text-[#0066b3]">
             Precio: {producto.precio}
           </p>
           <p className="text-gray-500">
             <span className="font-semibold">Tipo:</span> {producto.tipo}
           </p>
-          <button className="bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-700 transition">
-            Comprar
-          </button>
+          <Link
+            href={`https://wa.me/50558739352?text=${encodeURIComponent(
+              `Hola, estoy interesado en el producto: ${producto.nombre} (${producto.tipo}) por C$${producto.precio}`
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-[#0066b3] text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-800 transition"
+          >
+            Comprar por WhatsApp
+          </Link>
         </div>
       </div>
     </motion.div>

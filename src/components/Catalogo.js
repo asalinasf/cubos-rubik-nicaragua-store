@@ -3,6 +3,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import productos from "@/db/productos";
+import Link from "next/link";
 const CatalogoContent = () => {
   const [activeType, setActiveType] = useState("todos");
 
@@ -128,10 +129,11 @@ const CatalogoContent = () => {
                 <div className="flex justify-between items-center">
                   <span className="font-bold text-[#0066b3]">
                     {producto.precio}
-                  </span>
-                  <button className="bg-[#0066b3] hover:bg-blue-800 text-white px-3 py-1 rounded text-sm font-semibold transition">
+                  </span> 
+                  <Link className="bg-[#0066b3] hover:bg-blue-800 text-white px-3 py-1 rounded text-sm font-semibold transition"
+                  href={`catalogo/productos/${producto.id}`}>
                     Comprar
-                  </button>
+                  </Link>
                 </div>
               </div>
             </motion.div>
