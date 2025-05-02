@@ -54,7 +54,7 @@ export default function ProductoPage({ params }) {
             <span className="font-semibold">Tipo:</span> {producto.tipo}
           </p>
           <Link
-            href={`https://wa.me/50558739352?text=${encodeURIComponent(
+            href={`https://wa.me/50558739372?text=${encodeURIComponent(
               `Hola, estoy interesado en el producto: ${producto.nombre} (${producto.tipo}) por C$${producto.precio}`
             )}`}
             target="_blank"

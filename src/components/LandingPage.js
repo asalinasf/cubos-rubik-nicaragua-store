@@ -2,12 +2,31 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
+import {
+  FaTruck,
+  FaChalkboardTeacher,
+  FaVideo,
+  FaUsers,
+} from "react-icons/fa";
+
+const FeatureItem = ({ icon: Icon, text, delay = 0 }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.9, delay }}
+    className="flex flex-col sm:flex-row items-center text-center sm:text-left gap-4 mb-8 sm:mb-10 max-w-3xl mx-auto px-4"
+  >
+    <div className="bg-[#0066b3] text-white rounded-full p-4 shadow-md flex items-center justify-center text-3xl sm:text-4xl">
+      <Icon />
+    </div>
+    <p className="text-gray-700 text-base sm:text-lg md:text-xl">{text}</p>
+  </motion.div>
+);
 
 const LandingPage = () => {
   return (
     <main className="relative flex-grow bg-[#f7f9fc] overflow-hidden">
-      {/* Fondo decorativo con cubos */}
+      {/* Fondo decorativo */}
       <motion.img
         src="/images/cube-bg1.jpg"
         alt="Decoración Cubo"
@@ -26,7 +45,7 @@ const LandingPage = () => {
       />
 
       {/* Contenido principal */}
-      <section className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24 text-center">
+      <section className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24 text-center justify-center items-center">
         <motion.h2
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -40,12 +59,34 @@ const LandingPage = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.2 }}
-          className="text-gray-700 text-base sm:text-lg md:text-xl mb-8 sm:mb-10 max-w-2xl mx-auto px-2"
+          className="text-gray-700 text-base sm:text-lg md:text-xl mb-8 sm:mb-12 max-w-2xl mx-auto px-2"
         >
-          Tienda especializada en cubos, con envíos rápidos, asesoría y
-          tutoriales para que te conviertas en un pro.
+          Bienvenido a Cubos Rubik Nicaragua, tu tienda especializada en cubos de Rubik y rompecabezas de velocidad. Ofrecemos una amplia selección de cubos para todos los niveles, desde principiantes hasta speedcubers avanzados.
         </motion.p>
 
+        {/* Sección de beneficios */}
+        <FeatureItem
+          icon={FaTruck}
+          delay={0.2}
+          text="Envíos rápidos a todo el país – Recibe tus pedidos de forma segura y en tiempo récord."
+        />
+        <FeatureItem
+          icon={FaChalkboardTeacher}
+          delay={0.3}
+          text="Asesoría personalizada – ¿No sabes por dónde empezar o qué cubo elegir? Nuestro equipo te guía paso a paso."
+        />
+        <FeatureItem
+          icon={FaVideo}
+          delay={0.4}
+          text="Tutoriales en español – Aprende desde cero o mejora tus tiempos con nuestros videos y recursos exclusivos."
+        />
+        <FeatureItem
+          icon={FaUsers}
+          delay={0.5}
+          text="Únete a nuestra comunidad de cuberos, participa en retos, descubre nuevos productos y conviértete en un verdadero pro."
+        />
+
+        {/* Botón de llamada a la acción */}
         <motion.a
           href="/catalogo"
           whileHover={{ scale: 1.05 }}
